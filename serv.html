@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a3d62">
+<title>ServiNampula 2.0 - by Sábio</title>
+<link rel="manifest" href='data:application/json;base64,eyJuYW1lIjoiU2VydmlOYW1wdWxhIDIuMCBieSBTw6FiaW8iLCJzaG9ydF9uYW1lIjoiU2VydmlOYW1wdWxhIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwYTNkNjIiLCJ0aGVtZV9jb2xvciI6IiMwYTNkNjIiLCJpY29ucyI6W3sic3JjIjoiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMjI4MC8yMjgwMTM5LnBuZyIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9wbmcifV19'>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}
+body{background:#f1f5f9;color:#1e293b;padding-bottom:80px}
+.header{background:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #0001;position:sticky;top:0;z-index:10}
+.header h1{color:#0f2b4c;font-size:20px;line-height:1.1}
+.badge{background:#ff6b00;color:white;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:bold}
+.hero{background:linear-gradient(135deg,#c8f0e8,#0a8a74);margin:15px;border-radius:16px;padding:20px;color:#0a3d62}
+.hero h2{font-size:22px}
+.search{width:100%;margin-top:12px;padding:12px 18px;border:none;border-radius:25px;box-shadow:0 2px 8px #0001;font-size:14px}
+.cat{display:flex;gap:10px;margin:15px;flex-wrap:wrap}
+.cat div{flex:1;min-width:45%;padding:18px;border-radius:14px;text-align:center;font-weight:bold;cursor:pointer;color:white}
+.c1{background:#ff9f1c} .c2{background:#2ec4b6} .c3{background:#20bf55} .c4{background:#e71d36}
+.section-title{padding:0 15px;display:flex;justify-content:space-between;margin-top:10px}
+.card{background:white;margin:12px 15px;border-radius:16px;padding:14px;display:flex;gap:12px;box-shadow:0 2px 8px #0001;cursor:pointer}
+.card img{width:65px;height:65px;border-radius:50%;object-fit:cover;border:2px solid #0a3d62}
+.price{background:#0e9c8d;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:bold;display:inline-block;margin-top:5px}
+.detail-view{display:none;padding:15px;animation:fade .3s}
+.active{display:block}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.back{font-size:30px;cursor:pointer;font-weight:bold}
+.profile-big{background:white;border-radius:20px;padding:20px;box-shadow:0 4px 15px #0001;margin-top:10px}
+.profile-big img{width:90px;height:90px;border-radius:50%;border:3px solid #0a3d62}
+.tags span{background:#0e9c8d22;color:#0a3d62;padding:6px 12px;border-radius:20px;font-size:12px;margin:3px;display:inline-block;border:1px solid #0e9c8d33}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;font-size:12px;margin-top:8px}
+.cal div{padding:8px;border-radius:8px;background:#f1f5f9}
+.disp{background:#0e9c8d!important;color:white;font-weight:bold}
+.form input, .form textarea{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ddd;font-size:14px}
+.btn{background:#0e7c9e;color:white;border:none;padding:15px;width:100%;border-radius:14px;font-weight:bold;font-size:16px;margin-top:10px;cursor:pointer}
+.btn-ia{background:linear-gradient(90deg,#ff6b00,#ff9f1c)}
+.nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:20}
+.nav div{text-align:center;font-size:12px}
+.ia-badge{background:#ff6b00;color:white;padding:3px 8px;border-radius:12px;font-size:10px;margin-left:5px}
+</style>
+</head>
+<body>
+
+<div id="home">
+<div class="header"><h1>ServiNampula<br><small style="font-size:11px;color:gray">📍 Nampula, Moçambique</small></h1><span class="badge">by Sábio • 2º Ano</span></div>
+<div class="hero"><h2>Olá, João! 👋</h2><p>Que serviço precisa hoje?</p><input class="search" placeholder="🔍 Buscar serviço, prestador..."></div>
+<div class="section-title"><b>Categorias</b><small style="color:#0e9c8d">Ver todas</small></div>
+<div class="cat"><div class="c1">🪖 Construção</div><div class="c2">💧 Saneamento</div><div class="c3">🧹 Limpezas</div><div class="c4">❤️ Saúde</div></div>
+<div class="section-title"><b>Prestadores recomendados</b><small style="color:#0e9c8d">Ver todos</small></div>
+
+<div class="card" onclick="openDetail('Carlos Mussa','1500')">
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
+<div><span style="background:#ffbd59;padding:2px 8px;border-radius:10px;font-size:10px">Construção</span> <span class="ia-badge">🤖 IA Ativo</span><br><b>Eng. Carlos Mussa</b><br>⭐ 4.8 • 124 avaliações<br>📍 Muhala • 2.3 km • 🟡 Ausente<br><span class="price">Desde 1.500 MT/h • Disponível hoje</span></div>
+</div>
+
+<div class="card" onclick="openDetail('Ana Filipa','1200')">
+<img src="https://randomuser.me/api/portraits/women/44.jpg">
+<div><span style="background:#7ab8ff;padding:2px 8px;border-radius:10px;font-size:10px">Saneamento</span> <span class="ia-badge">🤖 IA Ativo</span><br><b>Ana Filipa</b><br>⭐ 4.6 • 89 avaliações<br>📍 Namicopo • 3.1 km • 🟢 Online<br><span class="price">Desde 1.200 MT/h • Disponível hoje</span></div>
+</div>
+
+<div class="card" onclick="openDetail('Ibrahim Abdul','900')">
+<img src="https://randomuser.me/api/portraits/men/75.jpg">
+<div><span style="background:#7ae582;padding:2px 8px;border-radius:10px;font-size:10px">Limpezas</span><br><b>Ibrahim Abdul</b><br>⭐ 4.9 • 210 avaliações<br>📍 Muatala • 1.5 km<br><span class="price">Desde 900 MT/h • Disponível agora</span></div>
+</div>
+</div>
+
+<div id="detail" class="detail-view">
+<div class="header"><span class="back" onclick="closeDetail()">‹</span><b>Prestador de Serviço</b><span>↗️ ❤️</span></div>
+<div class="profile-big">
+<div style="display:flex;gap:15px"><img id="d-img" src="https://randomuser.me/api/portraits/men/32.jpg"><div><h2 id="d-name">Eng. Carlos Mussa</h2><p>⛑️ Construção • Eng. Civil <span class="ia-badge">🤖 IA responde por ele</span></p><p>⭐ 4.8 • 24 avaliações</p><p>📍 Bairro Central, Nampula <span class="price" id="d-price">1500 MT/h</span></p></div></div>
+<h3 style="margin-top:20px">Especialidades</h3><div class="tags"><span>Obras Civis</span><span>Estrutura e Lajes</span><span>Orçamento de Obra</span><span>Fiscalização</span><span>Alvenaria</span></div>
+<div style="display:flex;gap:15px;margin-top:20px;flex-wrap:wrap"><div style="flex:1;min-width:150px"><h3>📍 Localização</h3><div style="background:#e2e8f0;height:110px;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px">Bairro Central, Nampula<br>Rua dos Ingás<br>próx. Escola Secundária</div></div><div style="flex:1;min-width:150px"><h3>📅 Disponibilidade</h3><small>Outubro 2026</small><div class="cal"><div>S</div><div>T</div><div>Q</div><div>Q</div><div>S</div><div>S</div><div>D</div><div>30</div><div>1</div><div>2</div><div>3</div><div class="disp">4</div><div class="disp">5</div><div class="disp">6</div><div>7</div><div>8</div><div>10</div><div>10</div><div class="disp">12</div><div class="disp">13</div><div>14</div></div></div></div>
+<h3 style="margin-top:20px">⭐ Avaliações (24) <small style="color:#0e9c8d">Ver todas</small></h3>
+<div style="background:white;padding:12px;border-radius:12px;margin:8px 0;border-left:4px solid #0e9c8d"><b>João Mateus ⭐⭐⭐⭐⭐ 02/10/2024</b><br><small>Serviço excelente, muito profissional e pontual na entrega da obra.</small></div>
+<div style="background:white;padding:12px;border-radius:12px;margin:8px 0;border-left:4px solid #0e9c8d"><b>Ana Lúcia ⭐⭐⭐⭐⭐ 29/09/2024</b><br><small>Boa qualidade, recomendo! Apenas demorou um pouco no orçamento.</small></div>
+<h3 style="margin-top:15px">💬 Solicitar Serviço</h3>
+<div id="chat-ia" style="background:#fff8e1;padding:12px;border-radius:12px;border:1px dashed #ff6b00;margin:10px 0;font-size:13px">🤖 <b>Assistente IA by Sábio:</b> Olá! O Eng. Carlos está em obra agora. Eu posso coletar seu pedido. Qual serviço precisa?</div>
+<div class="form"><input id="f-nome" placeholder="Seu nome completo"><input id="f-bairro" placeholder="Ex: Bairro Muhala - Nampula"><input id="f-data" type="date"><textarea id="f-desc" placeholder="Descreva o serviço..."></textarea><button class="btn btn-ia" onclick="enviarIA()">🤖 Falar com Assistente IA (Resposta Imediata)</button><button class="btn" onclick="alert('Solicitação enviada! O prestador responderá via WhatsApp em até 2 horas - ServiNampula 2.0 by Sábio')">📲 Enviar via WhatsApp</button><p style="text-align:center;font-size:11px;margin-top:8px;color:gray">By Sábio - Univ. Politécnica - 2º Ano Eng. Civil</p></div>
+</div>
+</div>
+
+<div class="nav"><div>🏠<br><small>Início</small></div><div>🔍<br><small>Pesquisar</small></div><div>📋<br><small>Pedidos</small></div><div>👤<br><small>Perfil</small></div></div>
+
+<script>
+let prestadorAtual = "Eng. Carlos Mussa";
+function openDetail(nome, preco){
+ prestadorAtual = nome;
+ document.getElementById('d-name').innerText = nome;
+ document.getElementById('d-price').innerText = preco + " MT/h";
+ document.getElementById('home').style.display='none';
+ document.getElementById('detail').classList.add('active');
+ window.scrollTo(0,0);
+ document.getElementById('chat-ia').innerHTML = "🤖 <b>Assistente IA by Sábio:</b> Olá! O "+nome+" está offline por alguns minutos, mas já anotei. Qual serviço precisa? Me diga bairro e urgência.";
+}
+function closeDetail(){document.getElementById('detail').classList.remove('active');document.getElementById('home').style.display='block'}
+function enviarIA(){
+ let nome=document.getElementById('f-nome').value||"cliente";
+ let bairro=document.getElementById('f-bairro').value||"Nampula";
+ let desc=document.getElementById('f-desc').value||"serviço geral";
+ let chat=document.getElementById('chat-ia');
+ chat.innerHTML += "<br><br>👤 <b>Você:</b> "+desc+" em "+bairro+"<br><br>🤖 <b>IA:</b> Perfeito "+nome+"! Anotei: "+desc+" em "+bairro+". Valor estimado: 1.500 MT. O "+prestadorAtual+" vai te responder no WhatsApp em até 15 min com a confirmação. Obrigado por usar ServiNampula 2.0 by Sábio! ✅";
+ chat.style.background="#e8f5e9";
+ if(navigator.vibrate) navigator.vibrate(100);
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('data:text/javascript, self.addEventListener(\"fetch\",e=>{})')}
+</script>
+</body>
+</html>
